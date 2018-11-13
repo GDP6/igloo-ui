@@ -1,0 +1,24 @@
+.banner {
+	display: flex;
+	justify-content: space-between;
+	background-color: #FF0099;
+}
+
+.midLogo {
+	width: auto;
+	height: 5vw;
+	padding-top: 2.5vw;
+}
+
+.leftLogo {
+	width: auto;
+	height: 10vw;
+}
+
+.options {
+	width: auto;
+	height: 7vw;
+	padding-top: 1.5vw;
+}
+
+	
