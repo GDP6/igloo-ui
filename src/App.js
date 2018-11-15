@@ -10,7 +10,7 @@ class App extends Component {
         <HeaderBar />
         <TankInformation 
           time="20 minutes"
-          percentage="45"
+          percentage="100"
         />
       </div>
     );

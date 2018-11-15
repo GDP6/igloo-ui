@@ -31,15 +31,15 @@
 	position: absolute;
 	width: 300%;
 	height: 300%;
-	left: 100%;
-	top: 50%;
-	background-color: rgba(1, 190, 255, 0,4);
+	left: -100%;
+	top: 10%;
+	background-color: rgba(0, 70, 110, 0.4);
 	border-radius: 45%;
 	animation: rotate 10s linear infinite;
 }
 
 @keyframes rotate {
-	100% { transform: rotate(360ged); }
+	100% { transform: rotate(360deg); }
 }
 
 h1 {
