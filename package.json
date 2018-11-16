@@ -6,6 +6,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
+    "react-sliding-pane": "^3.0.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {
@@ -22,5 +23,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GDP6/igloo-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GDP6/igloo-ui/issues"
+  },
+  "homepage": "https://github.com/GDP6/igloo-ui#readme"
 }

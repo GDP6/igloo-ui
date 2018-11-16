@@ -1,6 +1,6 @@
 #tank {
-	width: 35vmin;
-	height: 35vmin;
+	width: 30vmin;
+	height: 30vmin;
 	position: relative;
 	left: 50%;
 	top: 0%;
@@ -11,8 +11,8 @@
 }
 
 .tankTop {
-	width: 34.93vmin;
-	height: 35vmin;
+	width: 30vmin;
+	height: 30vmin;
 	position: relative;
 	left: 50%;
 	top: 50%;
