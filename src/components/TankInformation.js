@@ -10,7 +10,7 @@ const TankInformation = ({time, percentage}) => {
 			<div className="tankTop"> 
 				<h1>{percentage}%</h1>
 			</div>
-			<div id="tank">
+			<div className="tank">
 
 				<div className="waterWave" style={{top: (80 - percentage * 0.7) + '%'}}></div>
 			</div>
