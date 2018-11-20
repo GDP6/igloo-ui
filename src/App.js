@@ -6,7 +6,8 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import { render } from 'react-dom';
 import Modal from 'react-modal';
-import SlidingPane from 'react-sliding-pane';
+import SlidingPane from './containers/SlidingPanel/SlidingPanel';
+//import SlidingPane from 'react-sliding-pane'
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   openSidePanel = () => {
-    this.setState({isPaneOpen: true});
+    this.setState({isPaneOpen: !this.state.isPaneOpen});
   }
 
   onRouteChange = (route) => {
@@ -50,25 +51,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HeaderBar panelOpen={this.openSidePanel} />
+        <HeaderBar panelOpen={this.openSidePanel} isOpen={this.state.isPaneOpen} />
         { this.state.route === 'home' 
           ? <div> 
-            <TankInformation 
-            time="20 minutes"
-            percentage="100"
-            />
-          <SlidingPane
-            isOpen={ this.state.isPaneOpen }
-            title='Some Title'
-            subtitle='Some subtitle'
-            from='right'
-            width='500px'
-            onRequestClose={ () => {
-              this.setState({ isPaneOpen: false});
-            }}>
-              <button onClick={()=>this.onRouteChange('signin')}> Log Out </button>
-            </SlidingPane>
-          </div>
+             <TankInformation 
+                time="20 minutes"
+                percentage="100"
+              />
+              
+            </div>
           : this.state.route === 'signin'
             ? <Signin onRouteChange={this.onRouteChange} />
             : <Register onRouteChange={this.onRouteChange} />

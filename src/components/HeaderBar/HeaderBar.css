@@ -1,8 +1,12 @@
-.banner {
+#banner {
 	display: flex;
 	justify-content: space-between;
 	background-color: #FF0099;
+	height: auto;
+	z-index: 99
 }
+
+
 
 .midLogo {
 	width: auto;
@@ -21,4 +25,19 @@
 	padding-top: 1.5vw;
 }
 
-	
+#optionsPanel {
+	height: 0;
+	width: 100vw;
+	background-color: #FF0099;
+	transition: height 1s cubic-bezier(0, .52, 0, 1);
+}
+
+#optionsPanel.hide {
+	height: 0;
+	//transform: translate3d(0, -50vh, 0);
+}
+
+#optionsPanel.show {
+	height: 25vh;
+	//transform: translate3d(0, 0vh, 0);
+}
