@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import HeaderBar from './components/HeaderBar';
-import TankInformation from './components/TankInformation';
+import HeaderBar from './components/HeaderBar/HeaderBar';
+import TankInformation from './components/TankInformation/TankInformation';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 import { render } from 'react-dom';
 import Modal from 'react-modal';
 import SlidingPane from 'react-sliding-pane';
@@ -13,7 +15,12 @@ class App extends Component {
     this.state = {
       isPaneOpen: false,
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: ''
+      }
     };
   }
 
@@ -26,12 +33,17 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    if(route === 'signout') {
-      this.setState({isSignedIn: false});
-    } else if (route === 'home') {
-      this.setState({isSignedIn: true});
-    }
-    this.setState({route: route});
+    console.log(route);
+    this.setState({route: route,
+                   isPaneOpen: false});
+  }
+
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email
+    }});
   }
 
 
@@ -43,7 +55,7 @@ class App extends Component {
           ? <div> 
             <TankInformation 
             time="20 minutes"
-            percentage="90"
+            percentage="100"
             />
           <SlidingPane
             isOpen={ this.state.isPaneOpen }
@@ -53,13 +65,14 @@ class App extends Component {
             width='500px'
             onRequestClose={ () => {
               this.setState({ isPaneOpen: false});
-            }} />
+            }}>
+              <button onClick={()=>this.onRouteChange('signin')}> Log Out </button>
+            </SlidingPane>
           </div>
-          : <div>
-            <button onClick={() => this.setState({route: 'home'})}>
-              Sign in 
-            </button>
-          </div>
+          : this.state.route === 'signin'
+            ? <Signin onRouteChange={this.onRouteChange} />
+            : <Register onRouteChange={this.onRouteChange} />
+          
         }
         
       </div>
