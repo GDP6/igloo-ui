@@ -1,0 +1,25 @@
+#panel {
+	top: -25vh;
+	left: 0;
+	height: 25vh;
+	width: auto;
+	background-color: #FF0099;
+	transition: transform 1s cubic-bezier(0, .52, 0, 1);
+	overflow: hidden;
+	z-index: 0;
+	position: static;
+
+}
+
+#panel.hide {
+	transform: translate3d(0, -25vh, 0);
+}
+
+#panel.show {
+	transform: translate3d(0, 0vh, 0);
+}
+
+.inner {
+	width: 98%;
+	height: 95%;
+}

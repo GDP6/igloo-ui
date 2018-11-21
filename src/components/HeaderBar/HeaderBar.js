@@ -27,12 +27,6 @@ const HeaderBar = ({panelOpen, isOpen}) => {
 
 				
 			</div>
-
-			<div id="optionsPanel"
-					className={isOpen ? 'show' : 'hide'}
-				>
-
-			</div>
 		</div>
 	);
 }

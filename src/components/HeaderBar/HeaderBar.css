@@ -3,7 +3,8 @@
 	justify-content: space-between;
 	background-color: #FF0099;
 	height: auto;
-	z-index: 99
+	z-index: 1;
+	position: relative;
 }
 
 

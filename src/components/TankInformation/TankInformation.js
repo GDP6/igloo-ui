@@ -5,7 +5,7 @@ import './TankInformation.css';
 const TankInformation = ({time, percentage}) => {
 
 	return (
-		<div>
+		<div className='tankInfo'>
 			<h1>There's about {time} of hot water in your tank.</h1>
 			<div className="tankTop"> 
 				<h1>{percentage}%</h1>

@@ -6,8 +6,9 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import { render } from 'react-dom';
 import Modal from 'react-modal';
-import SlidingPane from './containers/SlidingPanel/SlidingPanel';
+//import SlidingPane from './containers/SlidingPanel/SlidingPanel';
 //import SlidingPane from 'react-sliding-pane'
+import OptionsPanel from './components/OptionsPanel/OptionsPanel';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
         <HeaderBar panelOpen={this.openSidePanel} isOpen={this.state.isPaneOpen} />
         { this.state.route === 'home' 
           ? <div> 
+             <OptionsPanel isOpen={this.state.isPaneOpen} />
              <TankInformation 
                 time="20 minutes"
                 percentage="100"
