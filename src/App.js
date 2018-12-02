@@ -4,10 +4,6 @@ import HeaderBar from './components/HeaderBar/HeaderBar';
 import TankInformation from './components/TankInformation/TankInformation';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
-import { render } from 'react-dom';
-import Modal from 'react-modal';
-//import SlidingPane from './containers/SlidingPanel/SlidingPanel';
-//import SlidingPane from 'react-sliding-pane'
 import OptionsPanel from './components/OptionsPanel/OptionsPanel';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 
@@ -20,14 +16,10 @@ class App extends Component {
       isSignedIn: false,
       user: {
         id: '',
-        name: '',
+        name: 'Bob',
         email: ''
       }
     };
-  }
-
-  componentDidMount() {
-    Modal.setAppElement(this.el);
   }
 
   openSidePanel = () => {
@@ -55,10 +47,14 @@ class App extends Component {
         <HeaderBar panelOpen={this.openSidePanel} isOpen={this.state.isPaneOpen} />
         { this.state.route === 'home' 
           ? <div> 
-             <OptionsPanel isOpen={this.state.isPaneOpen} />
+             <OptionsPanel 
+				isOpen={this.state.isPaneOpen} 
+				onRouteChange={this.onRouteChange}
+			 />
              <TankInformation 
                 time="20 minutes"
                 percentage="100"
+				name={this.state.user.name}
               />
               
             </div>

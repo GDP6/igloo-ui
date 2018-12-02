@@ -1,6 +1,6 @@
 .tankInfo {
 	position: relative;
-	top: -25vh;
+	top: calc(-100vh + 10vw);
 	z-index: -1;
 }
 
@@ -53,4 +53,5 @@ h1 {
 	font-family: "Century Gothic";
 	word-wrap: break-word;
 	color: rgba(77, 77, 77, 1);
+	font-weight: 3;
 }
