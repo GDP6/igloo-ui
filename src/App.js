@@ -5,7 +5,6 @@ import TankInformation from './components/TankInformation/TankInformation';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import OptionsPanel from './components/OptionsPanel/OptionsPanel';
-import 'react-sliding-pane/dist/react-sliding-pane.css';
 
 class App extends Component {
   constructor (props) {
@@ -40,6 +39,14 @@ class App extends Component {
     }});
   }
 
+  getTimeRemaining = () => {
+    return "20 minutes";
+  }
+
+  getPercentRemaining = () => {
+    console.log("Returning percent")
+    return "100";
+  }
 
   render() {
     return (
@@ -52,8 +59,8 @@ class App extends Component {
 				onRouteChange={this.onRouteChange}
 			 />
              <TankInformation 
-                time="20 minutes"
-                percentage="100"
+                time={this.getTimeRemaining()}
+                percentage={this.getPercentRemaining()}
 				name={this.state.user.name}
               />
               
