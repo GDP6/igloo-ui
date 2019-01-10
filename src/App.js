@@ -13,12 +13,15 @@ class App extends Component {
       isPaneOpen: false,
       route: 'signin',
       isSignedIn: false,
+      time: "N/A",
+      percentage: "100",
       user: {
         id: '',
         name: 'Jake',
         email: ''
       }
     };
+    this.getTimeRemaining();
   }
 
   openSidePanel = () => {
@@ -43,23 +46,16 @@ class App extends Component {
     }});
   }
 
-  getLatestData = function(){
-    console.log("Getting latest data")
+  getTimeRemaining = function(){
+    console.log("Returning time left");
     var request_url = "http://iglooboiler.appspot.com/jakestank"
     const Http = new XMLHttpRequest();
     Http.open("GET", request_url);
     Http.send();
     Http.onreadystatechange=(e)=>{
       console.log(Http.responseText)
-      return Http.responseText
+      this.updateTime("Done!")
     }
-  }
-
-  getTimeRemaining = function(){
-    console.log("Returning time left");
-    //var data = this.getLatestData()
-    //this.updateTime("Data")
-    return "1 minutes"
   }
 
   getPercentRemaining = () => {
@@ -78,8 +74,8 @@ class App extends Component {
 				onRouteChange={this.onRouteChange}
 			 />
              <TankInformation
-                time={this.getTimeRemaining()}
-                percentage={this.getPercentRemaining()}
+                time={this.state.time}
+                percentage={this.state.percentage}
 			      	  name={this.state.user.name}
               />
               
