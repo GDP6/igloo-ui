@@ -2,7 +2,7 @@ import React from 'react';
 
 import './OptionsPanel.css';
 
-const OptionsPanel = ({isOpen, onRouteChange}) => {
+const OptionsPanel = ({isOpen, onRouteChange, currentRoute}) => {
 	return (
 		<div 
 			id="panel"
@@ -10,7 +10,26 @@ const OptionsPanel = ({isOpen, onRouteChange}) => {
 				isOpen ? 'show' : 'hide'
 			} 
 		>
+
+
+			
+				
+			
+
 			<div className='inner bg-white br3 center'>
+				{currentRoute === 'home'
+					? <button 
+						onClick={() => onRouteChange('graph')} 
+						className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib'
+					
+					> Show usage graph</button>
+					: <button 
+						onClick={() => onRouteChange('home')} 
+						className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib'
+					
+					> Show tank</button>
+				}
+				
 				<button 
 					onClick={() => onRouteChange('signin')} 
 					className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib'

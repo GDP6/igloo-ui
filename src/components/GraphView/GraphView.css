@@ -1,0 +1,7 @@
+.graphMain {
+	position: absolute;
+	height: 50vh;
+	top: calc( 10vw);
+	width: 99vw;
+	z-index: -1;
+}
