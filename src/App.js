@@ -6,12 +6,28 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import OptionsPanel from './components/OptionsPanel/OptionsPanel';
 
+import GraphView from './components/GraphView/GraphView';
+
+  const data = [
+    {x: 0, y: 8},
+    {x: 1, y: 5},
+    {x: 2, y: 4},
+    {x: 3, y: 9},
+    {x: 4, y: 1},
+    {x: 5, y: 7},
+    {x: 6, y: 6},
+    {x: 7, y: 3},
+    {x: 8, y: 2},
+    {x: 9, y: 0}
+];
+
+
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
       isPaneOpen: false,
-      route: 'signin',
+      route: 'graph',
       isSignedIn: false,
       time: "N/A",
       percentage: "100",
@@ -20,6 +36,7 @@ class App extends Component {
         name: 'Jake',
         email: ''
       }
+      
     };
     this.getTimeRemaining();
   }
@@ -63,26 +80,50 @@ class App extends Component {
     return "100";
   }
 
+
+pushToGraph = (a,b) => {
+  data.push({x: a, y: b});
+  console.log("click");
+  this.forceUpdate();
+}
+
+
+  
+
+
   render() {
     return (
       <div className="App">
         <HeaderBar panelOpen={this.openSidePanel} isOpen={this.state.isPaneOpen} />
-        { this.state.route === 'home' 
-          ? <div> 
+        { this.state.route === 'home' || this.state.route === 'graph' 
+          ? <div className="mainBody"> 
              <OptionsPanel 
-				isOpen={this.state.isPaneOpen} 
-				onRouteChange={this.onRouteChange}
-			 />
-             <TankInformation
-                time={this.state.time}
-                percentage={this.state.percentage}
-			      	  name={this.state.user.name}
+
+
+        				isOpen={this.state.isPaneOpen} 
+        				onRouteChange={this.onRouteChange}
+                currentRoute={this.state.route}
+			       />
+             <button onClick={() => this.pushToGraph(10,4)}> click </button>
+              {this.state.route === 'home'
+                ? <TankInformation 
+                time="20 minutes"
+                percentage="100"
+				        name={this.state.user.name}
+
+
               />
+                : <GraphView 
+                    data ={data}
+
+                />}
               
             </div>
           : this.state.route === 'signin'
             ? <Signin onRouteChange={this.onRouteChange} />
-            : <Register onRouteChange={this.onRouteChange} />
+            : this.state.route === 'register' 
+              ? <Register onRouteChange={this.onRouteChange} />
+              : <div></div>
           
         }
         

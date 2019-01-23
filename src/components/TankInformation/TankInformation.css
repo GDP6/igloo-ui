@@ -1,17 +1,18 @@
 .tankInfo {
-	position: relative;
-	top: calc(-100vh + 10vw);
+	position: absolute;
+	top: calc( 10vw);
+	width: 99vw;
 	z-index: -1;
 }
 
 .tank {
 	width: 30vmin;
-	height: 30vmin;
+	height: 40vmin;
 	position: relative;
 	left: 50%;
 	top: 0%;
-	transform: translate(-50%, -50%);
-	background: linear-gradient(#f9855d, #fdd288, white);
+	transform: translate(-50%, -36%);
+	background: #f9855d;
 	overflow: hidden;
 	z-index: -1;
 }
@@ -36,11 +37,11 @@
 
 .waterWave {
 	position: absolute;
-	width: 300%;
+	width: 400%;
 	height: 300%;
-	left: -100%;
+	left: -150%;
 	top: 10%;
-	background-color: rgba(0, 70, 110, 0.4);
+	background-color: rgba(0, 70, 110, 0.9);
 	border-radius: 45%;
 	animation: rotate 10s linear infinite;
 }
