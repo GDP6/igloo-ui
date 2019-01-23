@@ -1,7 +1,10 @@
 .graphMain {
+	display: flex;
+	justify-content: center;
 	position: absolute;
 	height: 50vh;
-	top: calc( 10vw);
-	width: 99vw;
+	top:  15vw;
+	width: 75vw;
 	z-index: -1;
+
 }

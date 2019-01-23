@@ -14,7 +14,9 @@ const TankInformation = ({time, percentage, name}) => {
 			<div className="tank">
 
 				<div className="waterWave" style={{top: (80 - percentage * 0.7) + '%'}}></div>
+				<button>Hello</button>
 			</div>
+
 
 		</div>
 	);

@@ -1,47 +1,24 @@
 import React from 'react';
-import {Line} from 'react-chartjs-2';
+import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, MarkSeries, makeWidthFlexible} from 'react-vis';
+// nothing to see here
+import './../../../node_modules/react-vis/dist/style.css';
 import './GraphView.css';
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ]
-};
 
-const GraphView = () => {
+const GraphView = ({data}) => {
 
+	const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 
 	return (
-		<div className='graphMain'>
-			<h1>GRAPH HERE!!!</h1>
-			<Line 
-				data={data} 
-				width={25}
-				options={{
-					maintainAspectRatio: false
-				}}
-				/>
+		<div className="graphMain">
+			<FlexibleXYPlot height = {400}>
+				<LineSeries data={data} />
+				<XAxis />
+				<YAxis />
+				<VerticalGridLines />
+				<HorizontalGridLines />
+
+			</FlexibleXYPlot>
 		</div>
 	);
 }
