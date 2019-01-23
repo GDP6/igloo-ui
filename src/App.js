@@ -29,17 +29,24 @@ class App extends Component {
       isPaneOpen: false,
       route: 'graph',
       isSignedIn: false,
+      time: "N/A",
+      percentage: "100",
       user: {
         id: '',
-        name: 'Bob',
+        name: 'Jake',
         email: ''
       }
       
     };
+    this.getTimeRemaining();
   }
 
   openSidePanel = () => {
     this.setState({isPaneOpen: !this.state.isPaneOpen});
+  }
+
+  updateTime = (new_time) => {
+    this.setState({time: new_time});
   }
 
   onRouteChange = (route) => {
@@ -56,8 +63,16 @@ class App extends Component {
     }});
   }
 
-  getTimeRemaining = () => {
-    return "20 minutes";
+  getTimeRemaining = function(){
+    console.log("Returning time left");
+    var request_url = "http://iglooboiler.appspot.com/jakestank"
+    const Http = new XMLHttpRequest();
+    Http.open("GET", request_url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+      console.log(Http.responseText)
+      this.updateTime("Done!")
+    }
   }
 
   getPercentRemaining = () => {
@@ -84,6 +99,7 @@ pushToGraph = (a,b) => {
           ? <div className="mainBody"> 
              <OptionsPanel 
 
+
         				isOpen={this.state.isPaneOpen} 
         				onRouteChange={this.onRouteChange}
                 currentRoute={this.state.route}
@@ -94,6 +110,7 @@ pushToGraph = (a,b) => {
                 time="20 minutes"
                 percentage="100"
 				        name={this.state.user.name}
+
 
               />
                 : <GraphView 
