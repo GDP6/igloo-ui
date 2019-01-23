@@ -5,6 +5,7 @@ import TankInformation from './components/TankInformation/TankInformation';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import OptionsPanel from './components/OptionsPanel/OptionsPanel';
+
 import GraphView from './components/GraphView/GraphView';
 
   const data = [
@@ -19,6 +20,7 @@ import GraphView from './components/GraphView/GraphView';
     {x: 8, y: 2},
     {x: 9, y: 0}
 ];
+
 
 class App extends Component {
   constructor (props) {
@@ -54,6 +56,14 @@ class App extends Component {
     }});
   }
 
+  getTimeRemaining = () => {
+    return "20 minutes";
+  }
+
+  getPercentRemaining = () => {
+    console.log("Returning percent")
+    return "100";
+  }
 
 
 pushToGraph = (a,b) => {
@@ -73,6 +83,7 @@ pushToGraph = (a,b) => {
         { this.state.route === 'home' || this.state.route === 'graph' 
           ? <div className="mainBody"> 
              <OptionsPanel 
+
         				isOpen={this.state.isPaneOpen} 
         				onRouteChange={this.onRouteChange}
                 currentRoute={this.state.route}
@@ -83,6 +94,7 @@ pushToGraph = (a,b) => {
                 time="20 minutes"
                 percentage="100"
 				        name={this.state.user.name}
+
               />
                 : <GraphView 
                     data ={data}
