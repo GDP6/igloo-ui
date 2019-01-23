@@ -11,7 +11,7 @@ const GraphView = ({data}) => {
 
 	return (
 		<div className="graphMain">
-			<FlexibleXYPlot height = {400}>
+			<FlexibleXYPlot height = {400} xType="time">
 				<LineSeries data={data} />
 				<XAxis />
 				<YAxis />
@@ -19,6 +19,8 @@ const GraphView = ({data}) => {
 				<HorizontalGridLines />
 
 			</FlexibleXYPlot>
+
+			<button onClick = { () => console.log("click")} >click</button>
 		</div>
 	);
 }

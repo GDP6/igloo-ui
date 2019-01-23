@@ -8,7 +8,7 @@ import OptionsPanel from './components/OptionsPanel/OptionsPanel';
 
 import GraphView from './components/GraphView/GraphView';
 
-  const data = [
+const data = [
     {x: 0, y: 8},
     {x: 1, y: 5},
     {x: 2, y: 4},
@@ -35,7 +35,8 @@ class App extends Component {
         id: '',
         name: 'Jake',
         email: ''
-      }
+      },
+      data: data
       
     };
     this.getTimeRemaining();
@@ -81,11 +82,16 @@ class App extends Component {
   }
 
 
-pushToGraph = (a,b) => {
-  data.push({x: a, y: b});
-  console.log("click");
-  this.forceUpdate();
-}
+  pushToGraph = (a,b) => {
+    let temp = data.shift();
+    console.log(data);
+    data.push({x: data[data.length-1].x + 1, y: temp.y});
+    console.log(data);
+    this.setState({data: data});
+    console.log("click");
+   // this.setState({percentage: this.state.percentage - 10});
+   // this.forceUpdate();
+  }
 
 
   
@@ -107,14 +113,14 @@ pushToGraph = (a,b) => {
              <button onClick={() => this.pushToGraph(10,4)}> click </button>
               {this.state.route === 'home'
                 ? <TankInformation 
-                time="20 minutes"
-                percentage="100"
+                time={this.state.time}
+                percentage={this.state.percentage}
 				        name={this.state.user.name}
 
 
               />
                 : <GraphView 
-                    data ={data}
+                    data ={this.state.data}
 
                 />}
               
