@@ -1,6 +1,7 @@
 .graphMain {
 	pointer-events: auto;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	position: absolute;
 	height: 50vh;
@@ -8,4 +9,15 @@
 	width: 75vw;
 	z-index: -1;
 	
+}
+
+.graph {
+	color: magenta;
+}
+
+h1 {
+	font-family: "Century Gothic";
+	word-wrap: break-word;
+	color: rgba(77, 77, 77, 1);
+	font-weight: 3;
 }

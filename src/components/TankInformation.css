@@ -1,0 +1,49 @@
+.tank {
+	width: 30vmin;
+	height: 40vh;
+	position: relative;
+	left: 50%;
+	top: 0%;
+	transform: translate(-50%, -50%);
+	background-color: #f9855d;
+	overflow: hidden;
+	z-index: 0;
+}
+
+.tankTop {
+	width: 30vmin;
+	height: 30vmin;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, 00%);
+	border-radius: 20vmin;
+	background-color: #f9855d;
+}
+
+.tankTop h1 {
+	transform: translate(0%, 100%);
+	font-size: 6vmin; 
+	font-weight: 1;
+}
+
+.waterWave {
+	position: absolute;
+	width: 300vh;
+	height: 300vh;
+	left: -100vh;
+	top: 10vh;
+	background-color: rgba(0, 0, 255, 1);
+	border-radius: 45%;
+	animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+	100% { transform: rotate(360deg); }
+}
+
+h1 {
+	font-family: "Century Gothic";
+	word-wrap: break-word;
+	color: rgba(77, 77, 77, 1);
+}

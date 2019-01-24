@@ -89,7 +89,7 @@ class App extends Component {
     console.log(data);
     this.setState({data: data});
     console.log("click");
-   // this.setState({percentage: this.state.percentage - 10});
+    this.setState({percentage: this.state.percentage - 10});
    // this.forceUpdate();
   }
 

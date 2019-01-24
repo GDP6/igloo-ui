@@ -9,18 +9,20 @@ const GraphView = ({data}) => {
 
 	const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 
+
 	return (
 		<div className="graphMain">
-			<FlexibleXYPlot height = {400} xType="time">
-				<LineSeries data={data} />
-				<XAxis />
-				<YAxis />
-				<VerticalGridLines />
-				<HorizontalGridLines />
+			<h1>Graph!!!</h1>
+			<div className="graph">
+				<FlexibleXYPlot height = {400} xType="time" color="magenta">
+					<LineSeries data={data} color="#FF0099" />
+					<XAxis />
+					<YAxis />
+					<VerticalGridLines />
+					<HorizontalGridLines />
 
-			</FlexibleXYPlot>
-
-			<button onClick = { () => console.log("click")} >click</button>
+				</FlexibleXYPlot>
+			</div>
 		</div>
 	);
 }
