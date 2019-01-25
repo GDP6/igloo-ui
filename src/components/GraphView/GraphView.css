@@ -1,4 +1,4 @@
-.graphMain {
+#graphMain {
 	pointer-events: auto;
 	display: flex;
 	flex-direction: column;
@@ -7,13 +7,21 @@
 	height: 50vh;
 	top:  15vw;
 	width: 75vw;
-	z-index: -1;
-	
+	//z-index: -1;
 }
 
-.graph {
-	color: magenta;
+#graphMain.back {
+	z-index: -1;
 }
+
+#graphMain.front {
+	z-index: 1;
+}
+
+.dropdown {
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0
+}
+
 
 h1 {
 	font-family: "Century Gothic";

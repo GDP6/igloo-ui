@@ -1,25 +1,33 @@
 #panel {
 	top: calc(10vw - 100vh);
 	left: 0;
-	height: calc(100vh - 10vw);
+	height: calc(100vh - 40vw);
 	width: 100%;
 	background-color: #FF0099;
-	transition: transform 0.75s ease-out;
+	
 	overflow: hidden;
 	z-index: 0;
 	position: static;
 
+
+
 }
 
 #panel.hide {
+	transition: transform 0s ease-out;
 	transform: translate3d(0, calc(10vw - 100vh), 0);
 }
 
 #panel.show {
+	transition: transform 0.75s ease-out;
 	transform: translate3d(0, 0vh, 0);
 }
 
 .inner {
 	width: 98%;
 	height: 95%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 }

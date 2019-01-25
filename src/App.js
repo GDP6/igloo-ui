@@ -5,45 +5,45 @@ import TankInformation from './components/TankInformation/TankInformation';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import OptionsPanel from './components/OptionsPanel/OptionsPanel';
+import {csv} from 'd3-fetch';
+import sampleData from "./sample24.csv"
 
 import GraphView from './components/GraphView/GraphView';
 
-const data = [
-    {x: 0, y: 8},
-    {x: 1, y: 5},
-    {x: 2, y: 4},
-    {x: 3, y: 9},
-    {x: 4, y: 1},
-    {x: 5, y: 7},
-    {x: 6, y: 6},
-    {x: 7, y: 3},
-    {x: 8, y: 2},
-    {x: 9, y: 0}
-];
+const data = [];
 
 
 class App extends Component {
   constructor (props) {
     super(props);
+
+    
     this.state = {
       isPaneOpen: false,
-      route: 'graph',
+      route: 'signin',
       isSignedIn: false,
       time: "N/A",
       percentage: "100",
+      selectValue: "hour",
+      currentPoint: 1900,
       user: {
         id: '',
         name: 'Jake',
         email: ''
       },
-      data: data
-      
+      data: [],
+      displayData: []
     };
-    this.getTimeRemaining();
+    this.readData();
+   // this.displaySelectedData();
+   // this.getTimeRemaining();
+    
+
   }
 
   openSidePanel = () => {
     this.setState({isPaneOpen: !this.state.isPaneOpen});
+    this.forceUpdate();
   }
 
   updateTime = (new_time) => {
@@ -64,6 +64,43 @@ class App extends Component {
     }});
   }
 
+  readData = () => {
+    csv(sampleData).then((data) => {
+
+      for(let i = 0; i < data.length; i++) {
+        data[i].y = (data[i].y - 35) / 24 * 100;
+        data[i].x = new Date(data[i].x * 1000);
+      }
+      this.setState({data: data});
+      this.setState({displayData: this.state.data.slice(this.state.currentPoint - 60, this.state.currentPoint)})
+      this.setState({percentage: "" + Math.round(this.state.data[this.state.currentPoint].y)})
+      let time = this.state.data[this.state.currentPoint].y/100 * 80 / 2;
+      this.setState({time: "" + Math.round(time)});
+    })
+
+
+  }
+
+  updateDisplayDate = () => {
+    if(this.state.selectValue === 'hour') {
+      this.setState({displayData: this.state.data.slice(this.state.currentPoint - Math.min(60, this.state.currentPoint), this.state.currentPoint)});
+    }
+    if(this.state.selectValue === 'day') {
+      this.setState({displayData: this.state.data.slice(this.state.currentPoint - Math.min(1440, this.state.currentPoint), this.state.currentPoint)});
+    }
+    if(this.state.selectValue === 'week') {
+     this.setState({displayData: this.state.data.slice(this.state.currentPoint - Math.min(10080, this.state.currentPoint), this.state.currentPoint)});
+    }
+    this.setState({percentage: "" + Math.round(this.state.data[this.state.currentPoint].y)})
+    let time = this.state.data[this.state.currentPoint].y/100 * 80 / 2;
+    this.setState({time: "" + Math.round(time)});
+  }
+
+
+  onSelectChange = (event) => {
+    this.setState({selectValue: event.target.value}, () => this.updateDisplayDate());  
+  }
+
   getTimeRemaining = function(){
     console.log("Returning time left");
     var request_url = "http://iglooboiler.appspot.com/jakestank"
@@ -82,15 +119,9 @@ class App extends Component {
   }
 
 
-  pushToGraph = (a,b) => {
-    let temp = data.shift();
-    console.log(data);
-    data.push({x: data[data.length-1].x + 1, y: temp.y});
-    console.log(data);
-    this.setState({data: data});
-    console.log("click");
-    this.setState({percentage: this.state.percentage - 10});
-   // this.forceUpdate();
+  pushToGraph = () => {
+    if(this.state.currentPoint < this.state.data.length - 1)
+      this.setState({currentPoint: this.state.currentPoint + 1}, () => this.updateDisplayDate());
   }
 
 
@@ -109,19 +140,20 @@ class App extends Component {
         				isOpen={this.state.isPaneOpen} 
         				onRouteChange={this.onRouteChange}
                 currentRoute={this.state.route}
+                progressTime={this.pushToGraph}
 			       />
-             <button onClick={() => this.pushToGraph(10,4)}> click </button>
               {this.state.route === 'home'
                 ? <TankInformation 
-                time={this.state.time}
+                time={this.state.time + " minutes"}
                 percentage={this.state.percentage}
 				        name={this.state.user.name}
 
 
               />
                 : <GraphView 
-                    data ={this.state.data}
-
+                    data ={this.state.displayData}
+                    isOpen ={this.state.isPaneOpen}
+                    handleChange = {this.onSelectChange}
                 />}
               
             </div>
