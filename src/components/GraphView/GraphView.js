@@ -16,7 +16,7 @@ const GraphView = ({data, isOpen, handleChange}) => {
 		} >
 			<h1>Amount of hot water in the tank over time.</h1>
 			<div className="graph">
-				<FlexibleXYPlot height = {400} xType="time">
+				<FlexibleXYPlot height = {400} xType="time" yDomain={[0, 100]}>
 					<LineSeries data={data} color="#FF0099" />
 					<XAxis title ="Time of day" position = "middle"/>
 					<YAxis title = "Percentage of water in the tank" position = "middle"/>
